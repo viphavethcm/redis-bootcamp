@@ -1,0 +1,6 @@
+server:
+  port: 8080
+redis:
+  hostname: redis-17423.c295.ap-southeast-1-1.ec2.cloud.redislabs.com
+  port: 17423
+  password: KQuWYuzKHoRZxZp2mS5Ki0WERsUbZxgf
