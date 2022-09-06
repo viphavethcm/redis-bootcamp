@@ -1,11 +1,10 @@
 package com.redis.boocamp.service;
 
-import com.redis.boocamp.config.ApplicationConstant;
+import com.redis.boocamp.ultis.ApplicationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -21,18 +20,15 @@ public class PageService {
     public void setCachePage(String route, String pageUI) {
         if (cacheRoutes.contains(route))
             redisTemplate.opsForValue().set(
-                    combineKey(route), pageUI, 2000, TimeUnit.MILLISECONDS);
+                    ApplicationUtils.combinePageKey(route), pageUI, 2000, TimeUnit.MILLISECONDS);
     }
 
     public String getCachePage(String route) {
         if (!cacheRoutes.contains(route)) {
             return "";
         }
-        return String.valueOf(redisTemplate.opsForValue().get(combineKey(route)));
+        return String.valueOf(redisTemplate.opsForValue().get(ApplicationUtils.combinePageKey(route)));
     }
 
-    private String combineKey(String route)
-    {
-        return ApplicationConstant.redisPageId + route;
-    }
+
 }

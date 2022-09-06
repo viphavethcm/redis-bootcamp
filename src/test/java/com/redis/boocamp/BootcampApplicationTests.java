@@ -22,5 +22,4 @@ class BootcampApplicationTests {
         String pageUI = pageService.getCachePage(route);
         System.out.println(pageUI);
     }
-
 }
